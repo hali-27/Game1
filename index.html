@@ -5,9 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--Bootstrap css-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <!--Custom css-->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+<!--Custom css-->
     <link rel="stylesheet" type="text/css" href="adventure.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <title>OOP Text Adventure Game</title>
   </head>
   <body>
@@ -15,7 +17,7 @@
       <div id="gamearea">
         <div id="title" >
           <div class="col">
-            <h1 class="text-center">Mice Are Not Nice</h1>
+            <h1 class="text-center bg-white font-bold text-lg">Mice Are Not Nice!</h1>
             <br />
           </div>
         </div>
@@ -23,14 +25,16 @@
           
             <!--intro content-->
             <div class="justify-content-center mx-auto">
-              <p id="textarea" class="text-center">Oh no! There are two mice inside my house! I need your help to find them. You may come across two of my cats along the way. They don't want to get rid of the mice but may give you some clues about where the rodants could be.
-            Click the start button to begin...</p><br /><br />
+              <p id="textarea" class="text-center bg-white">Oh no! There are two mice inside the house! I need your help to find them. You may come across two of my dogs along the way. They don't want to get rid of the mice but may give you some clues about where the rodants could be. You can navigate around the house with "north, south, east, west".
+            </p>
+            <p id="textarea" class="text-center bg-white">Click the start button to begin..</p><br /><br />
+            <div id="score"> </div>
               <div id="buttonarea">
-                <input id="startbutton" type="button" value="Start Game" class="btn btn-success text-center" onclick="startGame()"/>
+                <input id="startbutton" type="button" value="Start Game" class="btn btn-success text-center bg-white hover:bg-green-600" onclick="startGame()"/>
               </div>
             </div>
             <form id="gameform">
-              <div id="userentry">
+              <div id="userentry" class="focus">
               </div>
             </form>
         </div>
