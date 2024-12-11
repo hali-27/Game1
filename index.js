@@ -265,22 +265,24 @@ class Room {
   
   //add characters
   const Truffles = new Character("Truffles");
-  Truffles.description = "The mother cat. Living her best life playing in the games room";
-  Truffles.conversation = "The is a cute little creature sleeping in my bed in the Quiet room.";
+  Truffles.description = "Mother Dog. Living her best life playing in the games room";
+  Truffles.conversation = "The is a cute little creature sleeping in my bed in the Quiet room so I have moved into here.";
   const Poppy = new Character("Poppy");
-  Poppy.description = "The cat enjoying her views and temperature in the catio after eating her 5th meal of the day in the kitchen already."
+  Poppy.description = "The younger dog, enjoying her views and temperature in the catio after eating her 5th meal of the day in the kitchen already."
   Poppy.conversation = "Meow. I think I heard something in the kitchen.";
-//   const Mouse1 = new Character("Mouse1");
-//   Mouse1.description = "A chubby furry little thing that shouldn't be here!";
-//   Mouse1.conversation = "Squeak, mmm that was a yummy meal.";
-//   const Mouse2 = new Character("Mouse2");
-//   Mouse2.description = "A snoozing mouse.";
-//   Mouse2.conversation = "zZzZZ";
+  const Mouse1 = new Character("Mouse1");
+  Mouse1.description = "A chubby furry little thing that shouldn't be here!";
+  Mouse1.conversation = "Squeak, mmm that was a yummy meal.";
+  const Mouse2 = new Character("Mouse2");
+  Mouse2.description = "A snoozing mouse.";
+  Mouse2.conversation = "zZzZZ";
   
   
   // add characters to rooms
   GamesRoom.character = Truffles;
+  Kitchen.character = Mouse1;
   Catio.character = Poppy;
+  QuietRoom.character = Mouse2;
   
   /**
    * Subroutine to display information about the current room
