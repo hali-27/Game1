@@ -4,6 +4,7 @@ class Room {
       this._description = "";
       this._linkedRooms = {};
       this._character = "";
+      this._enemy = "";
     }
   
     get name() {
@@ -16,6 +17,10 @@ class Room {
   
     get character() {
       return this._character
+    }
+
+    get enemy() {
+      return this._enemy
     }
   
     set name(value) {
@@ -36,6 +41,10 @@ class Room {
   
     set character(value) {
       this._character = value;
+    }
+
+    set enemy(value) {
+      this._enemy = value;
     }
   
     /**
@@ -96,6 +105,16 @@ class Room {
         return this;
       }
     }
+// method to collect/capture mice
+    // collect() {
+    //   if (this.item in this._linkedRoom) {
+    //     return this._linkedRoom[item]
+    //   } else {
+    //     alert("There are no mice in here!!");
+    //     return this;
+    //   }
+    // }
+
   }
   
   class Item {
@@ -190,7 +209,7 @@ class Room {
      * @version 1.0
      */
     describe() {
-      return "Bingo! You have found " + this._name + ", " + this._description;
+      return "Oh look! You have found " + this._name + ", " + this._description;
     }
   
     /**
@@ -218,7 +237,8 @@ class Room {
       }
       this._weakness = value;
     }
-  
+    
+
     /**
      * 
      * a method to determine the reult of fighting an enemy
@@ -265,24 +285,29 @@ class Room {
   //add characters
   const Truffles = new Character("Truffles");
   Truffles.description = " my eldest dog. She is living her best life, playing with her toys";
-  Truffles.conversation = "Woof! There is a cute little creature sleeping in my bed in the Quiet Room so I have come in here.";
+  Truffles.conversation = "Woof! There is a smelly little creature sleeping in my bed in the Quiet Room so I have come in here.";
   const Poppy = new Character("Poppy");
   Poppy.description = "The younger dog, enjoying her views and temperature in the catio after eating her 5th meal of the day in the kitchen already."
   Poppy.conversation = "Meow. I think I heard something in the kitchen.";
-  const MouseE = new Character("MouseE");
+   
+  // add enemies
+    
+  const MouseE = new Enemy("MouseE");
   MouseE.description = "A chubby furry little thing that shouldn't be here!";
   MouseE.conversation = "Squeak, mmm that was a yummy.";
-  const MouseC = new Character("MouseC");
+  MouseE.weakness = "water";
+  const MouseC = new Enemy("MouseC");
   MouseC.description = "A snoozing mouse.";
   MouseC.conversation = "zZzZZ";
+  MouseC.weakness = "water";
   
   
   // add characters to rooms
   GamesRoom.character = Truffles;
-  Kitchen.character = MouseE;
   Catio.character = Poppy;
+  // add enemies to rooms
   QuietRoom.character = MouseC;
-  
+  Kitchen.character = MouseE;
   /**
    * Subroutine to display information about the current room
    * 
@@ -305,6 +330,11 @@ class Room {
     document.getElementById("buttonarea").innerHTML = '><input type="text" id="usertext" />';
     document.getElementById("usertext").focus();
   }
+
+  // function displayScoreInfo(score) {
+  //   let occupantMsg = ""
+  //   if (room.ch)
+  // }
   
   /**
    * Subroutine to complete inital game set up then handle commands from the user
@@ -334,5 +364,19 @@ class Room {
   
       }
     });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        command = document.getElementById("usertext").value;
+        const actions = ["capture", "play"]
+        if (actions.includes(command.toLowerCase())) {
+          score = +1
+          
+        }
+      }
+    }
+  
+  
+  )
   }
   
