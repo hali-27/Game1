@@ -46,7 +46,7 @@ class Room {
      * @version 1.0
      */
     describe() {
-      return "Looking around the " + this._name + " you can see " + this._description;
+      return "You are in the " + this._name + ". Looking around, you can see " + this._description;
     }
   
     /**
@@ -92,8 +92,7 @@ class Room {
       if (direction in this._linkedRooms) {
         return this._linkedRooms[direction];
       } else {
-        alert("You can not go that way",);
-        alert(this._name)
+        alert("Oops sorry, you can not go that way",);
         return this;
       }
     }
@@ -191,7 +190,7 @@ class Room {
      * @version 1.0
      */
     describe() {
-      return "You have met " + this._name + ", " + this._name + " is " + this._description;
+      return "Bingo! You have found " + this._name + ", " + this._description;
     }
   
     /**
@@ -241,11 +240,11 @@ class Room {
   
   //create the indiviual room objects and add their descriptions
   const Kitchen = new Room("Kitchen");
-  Kitchen.description = "a large room with two worktops, and a window by the sink. Food is stored and cooked here. This may be the perfect place to go for dinner if you are a mouse."
+  Kitchen.description = "food left open on the worktop and crumbs on the floor. This is the perfect place to go for dinner if you were a mouse."
   const QuietRoom = new Room("Quiet Room");
-  QuietRoom.description = "a sofa, bookshelf, and a fire place. It is a small room in the middle of the house. Nice and cosy for snoozing in. You can access every room in the house from here.";
+  QuietRoom.description = "a sofa, bookshelf, and a fire place. Nice and cosy for snoozing in. It is located in the middle of the house so can access every room from here.";
   const GamesRoom = new Room("Games Room");
-  GamesRoom.description = "a room full of cat toys and children toys.";
+  GamesRoom.description = "a room full of dog toys.";
   const Office = new Room("Office");
   Office.description =
     "a room with a desk, comfy chair, snacks, and a bay window.";
@@ -265,24 +264,24 @@ class Room {
   
   //add characters
   const Truffles = new Character("Truffles");
-  Truffles.description = "Mother Dog. Living her best life playing in the games room";
-  Truffles.conversation = "The is a cute little creature sleeping in my bed in the Quiet room so I have moved into here.";
+  Truffles.description = " my eldest dog. She is living her best life, playing with her toys";
+  Truffles.conversation = "Woof! There is a cute little creature sleeping in my bed in the Quiet Room so I have come in here.";
   const Poppy = new Character("Poppy");
   Poppy.description = "The younger dog, enjoying her views and temperature in the catio after eating her 5th meal of the day in the kitchen already."
   Poppy.conversation = "Meow. I think I heard something in the kitchen.";
-  const Mouse1 = new Character("Mouse1");
-  Mouse1.description = "A chubby furry little thing that shouldn't be here!";
-  Mouse1.conversation = "Squeak, mmm that was a yummy meal.";
-  const Mouse2 = new Character("Mouse2");
-  Mouse2.description = "A snoozing mouse.";
-  Mouse2.conversation = "zZzZZ";
+  const MouseE = new Character("MouseE");
+  MouseE.description = "A chubby furry little thing that shouldn't be here!";
+  MouseE.conversation = "Squeak, mmm that was a yummy.";
+  const MouseC = new Character("MouseC");
+  MouseC.description = "A snoozing mouse.";
+  MouseC.conversation = "zZzZZ";
   
   
   // add characters to rooms
   GamesRoom.character = Truffles;
-  Kitchen.character = Mouse1;
+  Kitchen.character = MouseE;
   Catio.character = Poppy;
-  QuietRoom.character = Mouse2;
+  QuietRoom.character = MouseC;
   
   /**
    * Subroutine to display information about the current room
@@ -315,7 +314,7 @@ class Room {
    */
   function startGame() {
     //set and display start room
-    currentRoom = Kitchen
+    currentRoom = GamesRoom
     displayRoomInfo(currentRoom);
   
     //
@@ -330,7 +329,7 @@ class Room {
           displayRoomInfo(currentRoom);
         } else {
           document.getElementById("usertext").value = ""
-          alert("that is not a valid command please try again")
+          alert("Invalid Command. Please enter north, south, east or west")
         }
   
       }
