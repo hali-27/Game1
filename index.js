@@ -350,6 +350,11 @@ function startGame() {
   currentRoom = GamesRoom;
   displayRoomInfo(currentRoom);
 
+  function gohome()
+{
+window.location.href="../index.html"
+}
+
 
 // lose feature: timer 
 var sec = 25;
@@ -361,6 +366,7 @@ function myTimer() {
     if (sec == -1) {
         clearInterval(time);
         alert("You are out of time! The visitors have arrived :-/");
+        gohome();
     }
   //  if {
   //   (collectedObjects.length == 2)  {
@@ -390,7 +396,7 @@ function myTimer() {
       }
       if (collectedObjects.length == 2)  {
         alert("Congratulations! & Thank you! You have caught all of the mice on time! :) ")
-        startGame()
+        gohome();
       }
        if (directions.includes(command.toLowerCase())) {
         currentRoom = currentRoom.move(command);
