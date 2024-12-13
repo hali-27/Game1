@@ -4,9 +4,7 @@
     <!--required meta--> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--Bootstrap css-->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
-<!--Custom css-->
+<!--css-->
     <link rel="stylesheet" type="text/css" href="adventure.css">
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -22,16 +20,16 @@
           </div>
         </div>
         <div id="details">
-          
             <!--intro content-->
             <div class="justify-content-center mx-auto">
-              <p id="textarea" class="text-center bg-white">Oh no! There are two mice inside the house! <br /><br />I need your help to find them. You may come across two of my pets along the way who can give you some clues about where the rodants could be. You can navigate around the house with "north, south, east, west" commands. If you find a mouse, type "CAPTURE" as quick as you can to catch it!
+              <p id="textarea" class="text-center bg-white">Oh no! There are two mice inside the house! <br /><br />I need your help to find them before my friends come over. You may meet two of my pets on your mission. They can give you some clues about where the rodants could be. You can navigate around the house with "north, south, east, west" commands. If you find a mouse, type "CAPTURE" as quick as you can to catch it!
             <br /><br /> Click Start Game when you are ready to enter my house... </p>
             <p class="text-center bg-white" id="score">Mice found:</p><br /><br />
             
               <div id="buttonarea">
                 <input id="startbutton" type="button" value="Start Game" class="btn btn-success text-center bg-white hover:bg-green-600" onclick="startGame()"/>
               </div>
+              <span id="timer"></span>
             </div>
             <form id="gameform">
               <div id="userentry" class="focus">

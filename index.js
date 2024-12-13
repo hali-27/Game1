@@ -11,6 +11,7 @@ class Room {
     this._enemy = "";
   }
 
+
   get name() {
     return this._name;
   }
@@ -110,7 +111,7 @@ class Room {
     if (direction in this._linkedRooms) {
       return this._linkedRooms[direction];
     } else {
-      alert("Oops sorry, you can not go that way. Oh wait, did you capture a mouse!");
+      alert("Oops sorry, you can not go that way. Oh wait, did you try capture a mouse!?");
       return this;
     }
   }
@@ -349,7 +350,27 @@ function startGame() {
   currentRoom = GamesRoom;
   displayRoomInfo(currentRoom);
 
-  //
+
+// lose feature: timer 
+var sec = 25;
+var time = setInterval(myTimer, 1000);
+
+function myTimer() {
+    document.getElementById('timer').innerHTML = sec + "sec left";
+    sec--;
+    if (sec == -1) {
+        clearInterval(time);
+        alert("You are out of time! The visitors have arrived :-/");
+    }
+  //  if {
+  //   (collectedObjects.length == 2)  {
+  //       alert("Congratulations! & Thank you! You have caught all of the mice on time! :) ")
+
+}
+
+
+
+
 
   //handle commands
   document.addEventListener("keydown", function (event) {
@@ -367,17 +388,16 @@ function startGame() {
         document.getElementById("score").innerHTML = "<p>" + collectedObjects.length + "</p>" + "<p>" + "/2 (MICE FOUND)" + "</p>" 
         alert("Woohoo, you have caught MouseE!")
       }
+      if (collectedObjects.length == 2)  {
+        alert("Congratulations! & Thank you! You have caught all of the mice on time! :) ")
+        startGame()
+      }
        if (directions.includes(command.toLowerCase())) {
         currentRoom = currentRoom.move(command);
         displayRoomInfo(currentRoom);
       } else {
         document.getElementById("usertext").value = "";
         alert("Invalid Command. Please enter north, south, east or west");
-      }
-
-      if (collectedObjects.length == 2)  {
-        alert("Congratulations! You have caught all of the mice")
-
       }
     }
   });
