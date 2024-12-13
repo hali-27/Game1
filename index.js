@@ -11,7 +11,6 @@ class Room {
     this._enemy = "";
   }
 
-
   get name() {
     return this._name;
   }
@@ -111,50 +110,11 @@ class Room {
     if (direction in this._linkedRooms) {
       return this._linkedRooms[direction];
     } else {
-      alert("Oops sorry, you can not go that way. Oh wait, did you try capture a mouse!?");
+      alert(
+        "Oops sorry, you can not go that way. Oh wait, did you try `CAPTURE` a mouse!?"
+      );
       return this;
     }
-  }
-}
-
-class Item {
-  constructor(name) {
-    (this._name = name), (this._description = "");
-  }
-
-  set name(value) {
-    if (value.length < 4) {
-      alert("Name is too short.");
-      return;
-    }
-    this._name = value;
-  }
-
-  set description(value) {
-    if (value.length < 4) {
-      alert("Decription is too short.");
-      return;
-    }
-    this._name = value;
-  }
-
-  get name() {
-    return this._name;
-  }
-
-  get description() {
-    return this._description;
-  }
-
-  /**
-   * a method to produce friendly item description
-   *
-   * @returns {string} description of the item
-   * @author Neil Bizzell
-   * @version 1.0
-   */
-  describe() {
-    return "The " + this._name + " is " + this._description;
   }
 }
 
@@ -232,23 +192,6 @@ class Enemy extends Character {
       return;
     }
     this._weakness = value;
-  }
-
-  /**
-   *
-   * a method to determine the reult of fighting an enemy
-   *
-   * @param {string} item the item used to fight the enemy
-   * @returns {boolean} the result of the fight true = win, falese = loose
-   * @author Neil Bizzell
-   * @version 1.0
-   */
-  fight(item) {
-    if ((item = this_weakness)) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }
 
@@ -338,7 +281,6 @@ function displayRoomInfo(room) {
   document.getElementById("usertext").focus();
 }
 
-
 /**
  * Subroutine to complete inital game set up then handle commands from the user
  *
@@ -350,33 +292,24 @@ function startGame() {
   currentRoom = GamesRoom;
   displayRoomInfo(currentRoom);
 
-  function gohome()
-{
-window.location.href="../index.html"
-}
+  //restart game
+  function gohome() {
+    window.location.href = "../index.html";
+  }
 
+  // lose feature: timer
+  var sec = 60;
+  var time = setInterval(myTimer, 1000);
 
-// lose feature: timer 
-var sec = 25;
-var time = setInterval(myTimer, 1000);
-
-function myTimer() {
-    document.getElementById('timer').innerHTML = sec + "sec left";
+  function myTimer() {
+    document.getElementById("timer").innerHTML = sec + "sec left";
     sec--;
     if (sec == -1) {
-        clearInterval(time);
-        alert("You are out of time! The visitors have arrived :-/");
-        gohome();
+      clearInterval(time);
+      alert("You are out of time! The visitors have arrived :-/");
+      gohome();
     }
-  //  if {
-  //   (collectedObjects.length == 2)  {
-  //       alert("Congratulations! & Thank you! You have caught all of the mice on time! :) ")
-
-}
-
-
-
-
+  }
 
   //handle commands
   document.addEventListener("keydown", function (event) {
@@ -385,20 +318,34 @@ function myTimer() {
       if (command == "CAPTURE" && currentRoom.name == "Quiet Room") {
         collectedObjects.push(MouseC);
         console.log(collectedObjects);
-        document.getElementById("score").innerHTML = "<p>" + collectedObjects.length + "</p>" + "<p>" + "/2 (MICE FOUND)" + "</p>" 
-      alert("Woohoo, you have caught MouseC!")
-      } else
-      if (command == "CAPTURE" && currentRoom.name == "Kitchen") {
+        document.getElementById("score").innerHTML =
+          "<p>" +
+          collectedObjects.length +
+          "</p>" +
+          "<p>" +
+          "/2 (MICE FOUND)" +
+          "</p>";
+        alert("Woohoo, you have caught MouseC!");
+      } else if (command == "CAPTURE" && currentRoom.name == "Kitchen") {
         collectedObjects.push(MouseE);
         console.log(collectedObjects);
-        document.getElementById("score").innerHTML = "<p>" + collectedObjects.length + "</p>" + "<p>" + "/2 (MICE FOUND)" + "</p>" 
-        alert("Woohoo, you have caught MouseE!")
+        document.getElementById("score").innerHTML =
+          "<p>" +
+          collectedObjects.length +
+          "</p>" +
+          "<p>" +
+          "/2 (MICE FOUND)" +
+          "</p>";
+        alert("Woohoo, you have caught MouseE!");
       }
-      if (collectedObjects.length == 2)  {
-        alert("Congratulations! & Thank you! You have caught all of the mice on time! :) ")
+      // win feature
+      if (collectedObjects.length == 2) {
+        alert(
+          "Congratulations! & Thank you! You have caught all of the mice on time! :) "
+        );
         gohome();
       }
-       if (directions.includes(command.toLowerCase())) {
+      if (directions.includes(command.toLowerCase())) {
         currentRoom = currentRoom.move(command);
         displayRoomInfo(currentRoom);
       } else {
