@@ -68,12 +68,16 @@ class Enemy extends Character {
   }
 
   set weakness(value) {
-    if (value.length < 4) {
-      alert("Decription is too short.");
+    if (value.includes ("capture")) {
+      alert("Congratulations! You have caught a mouse!");
       return;
     }
     this._weakness = value;
   }
+
+get weakness() {
+return this._weakness
+}
 
   /**
    * 
