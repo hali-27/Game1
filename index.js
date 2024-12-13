@@ -1,5 +1,7 @@
 const collectedObjects = [];
 
+const directions = ["north", "south", "east", "west", "capture"];
+
 class Room {
   constructor(name) {
     this._name = name;
@@ -108,19 +110,10 @@ class Room {
     if (direction in this._linkedRooms) {
       return this._linkedRooms[direction];
     } else {
-      alert("Oops sorry, you can not go that way. Did you capture a mouse?");
+      alert("Oops sorry, you can not go that way. Oh wait, did you capture a mouse!");
       return this;
     }
   }
-  // method to collect/capture mice
-  // collect(character) {
-  //   if (this._character) {
-  //     return this._linkedRoom[item]
-  //   } else {
-  //     alert("There are no mice in here!!");
-  //     return this;
-  //   }
-  // }
 }
 
 class Item {
@@ -362,18 +355,29 @@ function startGame() {
   document.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       command = document.getElementById("usertext").value;
-      if (command == "capture" && currentRoom.name == "Quiet Room") {
+      if (command == "CAPTURE" && currentRoom.name == "Quiet Room") {
         collectedObjects.push(MouseC);
         console.log(collectedObjects);
-        document.getElementById("score").innerHTML = "<p>" + collectedObjects.length + "</p>" + "<p>" + "/2" + "</p>" 
+        document.getElementById("score").innerHTML = "<p>" + collectedObjects.length + "</p>" + "<p>" + "/2 (MICE FOUND)" + "</p>" 
+      alert("Woohoo, you have caught MouseC!")
+      } else
+      if (command == "CAPTURE" && currentRoom.name == "Kitchen") {
+        collectedObjects.push(MouseE);
+        console.log(collectedObjects);
+        document.getElementById("score").innerHTML = "<p>" + collectedObjects.length + "</p>" + "<p>" + "/2 (MICE FOUND)" + "</p>" 
+        alert("Woohoo, you have caught MouseE!")
       }
-      const directions = ["north", "south", "east", "west", "capture"];
-      if (directions.includes(command.toLowerCase())) {
+       if (directions.includes(command.toLowerCase())) {
         currentRoom = currentRoom.move(command);
         displayRoomInfo(currentRoom);
       } else {
         document.getElementById("usertext").value = "";
         alert("Invalid Command. Please enter north, south, east or west");
+      }
+
+      if (collectedObjects.length == 2)  {
+        alert("Congratulations! You have caught all of the mice")
+
       }
     }
   });
