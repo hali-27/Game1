@@ -294,7 +294,7 @@ function startGame() {
 
   //restart game
   function gohome() {
-    window.location.href = "../index.html";
+    window.location.href = "https://hali-27.github.io/Game1/";
   }
 
   // lose feature: timer
